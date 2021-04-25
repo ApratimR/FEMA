@@ -1,9 +1,10 @@
 from FNNH import FNNH
 import base64
 
-char_array="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_"
 
 def FMEA(data="",password="",mode=1,blocksize=64,stress=1):
+    _char_array="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_"
+
     print(type(data))
     print(data,password,mode,blocksize,stress)
 
@@ -23,7 +24,7 @@ def FMEA(data="",password="",mode=1,blocksize=64,stress=1):
 
         temp_for_data = []
         for temp in range(len(data)):
-            temp_for_data.append(char_array.index(data[temp]))
+            temp_for_data.append(_char_array.index(data[temp]))
 
         password_copy = password[:]
         counter = 0
@@ -44,7 +45,7 @@ def FMEA(data="",password="",mode=1,blocksize=64,stress=1):
 
         temp_enc_arr_to_str = str()
         for temp in tempdata:
-            temp_enc_arr_to_str+=char_array[temp]
+            temp_enc_arr_to_str+=_char_array[temp]
 
         return temp_enc_arr_to_str
 
@@ -58,7 +59,7 @@ def FMEA(data="",password="",mode=1,blocksize=64,stress=1):
     elif mode == 2: #this is decrypt
         temp_for_data = []
         for temp in range(len(data)):
-            temp_for_data.append(char_array.index(data[temp]))
+            temp_for_data.append(_char_array.index(data[temp]))
 
         password_copy = password[:]
         counter = 0
@@ -78,7 +79,7 @@ def FMEA(data="",password="",mode=1,blocksize=64,stress=1):
 
         temp_enc_arr_to_str = str()
         for temp in tempdata:
-            temp_enc_arr_to_str+=char_array[temp]
+            temp_enc_arr_to_str+=_char_array[temp]
 
         ##top pad
         temp_enc_arr_to_str = str(temp_enc_arr_to_str)
