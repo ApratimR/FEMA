@@ -5,10 +5,7 @@ import base64
 def FMEA(data="",password="",mode=1,blocksize=64,stress=1):
     _char_array="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_"
 
-    print(type(data))
     print(data,password,mode,blocksize,stress)
-
-
 
     password = password.encode(encoding="UTF-8")
     password = base64.urlsafe_b64encode(password)
@@ -22,15 +19,23 @@ def FMEA(data="",password="",mode=1,blocksize=64,stress=1):
         data = data.decode(encoding="UTF-8")
         data = data.replace("=","")
 
+
+        permutation = FNNH(password,len(data),stress * 2,returnmode="array",maxreturnval = 64)
+
+
         temp_for_data = []
         for temp in range(len(data)):
             temp_for_data.append(_char_array.index(data[temp]))
 
-        password_copy = password[:]
+
+        for temp1 in range(len(data)):
+            temp_for_data[temp1] = temp_for_data[temp1]^permutation[temp1]
+
+
         counter = 0
         seed = 1
         tempdata = []
-
+        password_copy = password[:]
 
         for temp in temp_for_data:
             tempdata.append(password_copy[counter]^temp)
@@ -61,6 +66,10 @@ def FMEA(data="",password="",mode=1,blocksize=64,stress=1):
         for temp in range(len(data)):
             temp_for_data.append(_char_array.index(data[temp]))
 
+
+        permutation = FNNH(password,len(data),stress * 2,returnmode="array",maxreturnval = 64)
+
+
         password_copy = password[:]
         counter = 0
         seed = 1
@@ -76,6 +85,11 @@ def FMEA(data="",password="",mode=1,blocksize=64,stress=1):
                 password_copy.append(seed)
                 password_copy = FNNH(password,blocksize,stress * 64,returnmode="array",maxreturnval = 64)
                 seed+=1
+
+
+        for temp1 in range(len(tempdata)):
+            tempdata[temp1] = tempdata[temp1]^permutation[temp1]
+
 
         temp_enc_arr_to_str = str()
         for temp in tempdata:
@@ -108,7 +122,8 @@ def main():
     # blocksize = int(input("enter the size of block"))
     # stress = int(input("enter the Instruction Cycle requirment factor (increase processing time)"))
 
-    print(FMEA("apratim","apratim",mode=2,blocksize=64,stress=2))
+    print(temp1 := FMEA("testdata123","test",mode=1,blocksize=64,stress=2))
+    print(FMEA(temp1,"test",mode=2,blocksize=64,stress=2))
 
 
 if __name__ == "__main__":
