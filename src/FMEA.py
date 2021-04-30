@@ -112,10 +112,7 @@ def FMEA(data="",password="",mode=1,blocksize=64,stress=1):
     else:
         raise Exception("Invalid Operation")
 
-
-
-
-def main():
+def _main():
     # password = str(input("Enter the password"))
     # data = str(input("Enter the data"))
     # mode = int(input("enter \n 1 To Encrypt\n 2 To Decrypt"))
@@ -127,4 +124,4 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    _main()
