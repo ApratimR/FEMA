@@ -9,7 +9,7 @@ setuptools.setup(
     version="0.0.1",
     author="Apratim Ray",
     author_email="apratimr55@gmail.com",
-    description="A flexible Mutable Encryption algorithm",
+    description="A flexible Mutable Symmetric Encryption algorithm",
     long_description=readme(),
     long_description_content_type="text/markdown",
     url="https://github.com/ApratimR/FMEA",
